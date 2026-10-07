@@ -1,7 +1,11 @@
+
 "use client"
 
 import * as React from "react"
-import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+import {
+  ThemeProvider as NextThemesProvider,
+  useTheme,
+} from "next-themes"
 
 function ThemeProvider({
   children,
@@ -9,11 +13,11 @@ function ThemeProvider({
 }: React.ComponentProps<typeof NextThemesProvider>) {
   return (
     <NextThemesProvider
+      {...props}
       attribute="class"
       defaultTheme="system"
       enableSystem
       disableTransitionOnChange
-      {...props}
     >
       <ThemeHotkey />
       {children}
@@ -47,7 +51,7 @@ function ThemeHotkey() {
         return
       }
 
-      if (event.key.toLowerCase() !== "d") {
+      if (event.key.toLowerCase() !== "l") {
         return
       }
 
@@ -68,4 +72,23 @@ function ThemeHotkey() {
   return null
 }
 
-export { ThemeProvider }
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme()
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark")
+  }
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="flex h-10 w-10 items-center justify-center text-2xl"
+      type="button"
+      
+    >
+      {resolvedTheme === "dark" ? "🌙" : "☀️"}
+    </button>
+  )
+}
+
+export { ThemeProvider, ThemeToggle }
