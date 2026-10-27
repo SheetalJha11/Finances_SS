@@ -6,7 +6,7 @@ export default clerkMiddleware(async (auth, req) => {
 
   if (
     pathname.startsWith("/dashboard") ||
-    pathname.startsWith("/forum") ||
+    pathname.startsWith("/form") ||
     pathname.startsWith("/api")
   ) {
     await auth.protect();

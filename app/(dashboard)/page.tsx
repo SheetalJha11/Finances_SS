@@ -1,14 +1,15 @@
-"use client"
+"use client";
 
-import { ThemeToggle } from "@/components/theme-provider"
-import {Header} from "@/components/header"
+
+import {DataGrid} from "@/components/ui/data-grid"
+import {DataCharts} from "@/components/data-charts"
 
 export default function Page() {
-  return (
-    <div >
-      
-       
-    </div>
-  )
-}
 
+  return (
+    <div className=" pb-6 -mt-17">
+      <DataGrid />
+      <DataCharts/>
+    </div>
+  );
+}

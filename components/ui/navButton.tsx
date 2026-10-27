@@ -1,30 +1,30 @@
 
-import { Button } from "./button"
-import {cn} from "@/lib/utils"
+"use client";
 
 type Props = {
-    href : string;
-    label: string;
-    isActive? : boolean;
-}
+  href: string;
+  label: string;
+  isActive?: boolean;
+};
 
-export function NavButton({
-    href,
-    label,
-    isActive
-}:Props) {
-    return(
-        <div>
-           <Button
-           size="sm"
-           variant="link"
-           className={cn("cursor-pointer  hover:text-neutral-400 hover:underline  font-extrabold text-white",
-           isActive ? "bg-white/10" : "bg-transparent"
-        )}
-      >
-        <a href={href}>{label}</a>
-                       
-            </Button> 
-        </div>
-    )
+export function NavButton({ href, label }: Props) {
+  return (
+    <a
+      href={href}
+      onClick={() => {
+        console.log("CLICKED:", label);
+        console.log("URL:", href);
+      }}
+      style={{
+        display: "inline-block",
+        padding: "12px",
+        color: "white",
+        cursor: "pointer",
+        position: "relative",
+        zIndex: 9999,
+      }}
+    >
+      {label}
+    </a>
+  );
 }

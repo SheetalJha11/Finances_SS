@@ -9,7 +9,6 @@ export default function LayoutDashBoard({children}:Props) {
     return(
         <div>
             <Header/>
-            Hello Dashboard
              {children}
         </div>
     )

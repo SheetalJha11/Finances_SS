@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import * as React from "react"
@@ -51,7 +52,10 @@ function ThemeHotkey() {
         return
       }
 
-      if (event.key.toLowerCase() !== "l") {
+      if (
+        typeof event.key !== "string" ||
+        event.key.toLowerCase() !== "l"
+      ) {
         return
       }
 
@@ -74,6 +78,11 @@ function ThemeHotkey() {
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const toggleTheme = () => {
     setTheme(resolvedTheme === "dark" ? "light" : "dark")
@@ -84,9 +93,16 @@ function ThemeToggle() {
       onClick={toggleTheme}
       className="flex h-10 w-10 items-center justify-center text-2xl"
       type="button"
-      
+      aria-label="Toggle theme"
+      title="Toggle theme"
     >
-      {resolvedTheme === "dark" ? "🌙" : "☀️"}
+      {!mounted ? (
+        <span className="inline-block h-6 w-6" />
+      ) : resolvedTheme === "dark" ? (
+        "☀️"
+      ) : (
+        "🌙"
+      )}
     </button>
   )
 }

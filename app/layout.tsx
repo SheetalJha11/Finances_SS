@@ -6,6 +6,9 @@ import { ClerkProvider } from "@clerk/nextjs"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+import QueryProvider from "@/providers/query-provider";
+import {SheetProvider} from "@/providers/sheet-providers"
+import {Sheet} from "@/components/ui/sheet"
 
 const geist = Geist({
   subsets: ["latin"],
@@ -35,7 +38,13 @@ export default function RootLayout({
         )}
       >
         <body>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <QueryProvider>
+            <SheetProvider/>
+            <Sheet/>
+            {children}
+            </QueryProvider>
+            </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
